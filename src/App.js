@@ -1,10 +1,12 @@
-import React from 'react';
-import Greeting from './Greeting';
+import React from "react";
+import Button from "./Button";
+import Input from "./Input";
 
 function App() {
   return (
     <div>
-      <Greeting name="John" />
+      <Button />
+      <Input />
     </div>
   );
 }

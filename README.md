@@ -1,65 +1,59 @@
-# Props in Functional Components
+# Handling Events in Functional Components
 
-# Overview
+## Overview
 
-Props (short for properties) are a fundamental concept in React.js that allow you to pass data from a parent component to a child component. In functional components, props are used to customize the behavior or content of the component. In this topic, we will explore what props are and how to use them in functional components.
+Event handling is an essential aspect of building interactive user interfaces in React.js. Events allow components to respond to user actions, such as button clicks, input changes, and more. In this topic, we will explore event handling in React functional components and learn how to handle various events like onClick, onChange, and more.
 
-# Learning Objectives
+## Learning Objectives
 
 By the end of this topic, you will:
 
-Understand the purpose and benefits of using props in functional components.
-Learn how to pass props to functional components and access them within the component.
+- Understand the concept of event handling in React functional components.
+- Learn how to handle different events like onClick, onChange, and others in your functional components.
 
-# What are Props?
+## Event Handling in React
 
-Props are a way to pass data from a parent component to a child component. They are similar to attributes in HTML and allow you to customize the behavior or content of a component. Props are read-only and should not be modified within the child component.
+In React, event handling is similar to handling events in standard JavaScript. However, there are a few differences and considerations specific to React. Events in React use camelCase naming convention, and you attach event handlers to JSX elements using props.
 
-# Using Props in Functional Components
+## Handling onClick Event
 
-To pass props to a functional component, you can include them as attributes when rendering the component. Here's an example of passing a prop to a functional component:
-
-```javascript
-import React from "react";
-
-function Greeting(props) {
-  return <h1>Hello, {props.name}!</h1>;
-}
-```
-
-In the above example, we have defined a functional component called `Greeting` that accepts a prop called `name`. Within the JSX code, we can access the `name` prop using `props.name` and dynamically display the name.
-
-To use the `Greeting` component with a specific name prop, you can pass it as an attribute when rendering the component:
-
-```javascript
-import React from "react";
-import Greeting from "./Greeting";
-
-function App() {
-  return (
-    <div>
-      <Greeting name="John" />
-    </div>
-  );
-}
-```
-
-In the above example, we render the Greeting component with the name prop set to "John". The Greeting component will display "Hello, John!" as its output.
-
-## Default Props
-
-You can also provide default values for props in case they are not passed from the parent component. This can be done using the `defaultProps` property of the functional component. Here's an example:
+Here's an example of handling the onClick event in a functional component:
 
 ```javascript
 import React from "react";
 
-function Greeting(props) {
-  return <h1>Hello, {props.name}!</h1>;
-}
+function Button() {
+  const handleClick = () => {
+    console.log("Button clicked!");
+  };
 
-Greeting.defaultProps = {
-  name: "Guest",
-};
+  return <button onClick={handleClick}>Click me</button>;
+}
 ```
 
-In the above example, if the `name` prop is not provided when rendering the `Greeting` component, it will default to "Guest".
+In the above example, we define a functional component called `Button` that renders a button element. We attach the `handleClick` function to the onClick event of the button. When the button is clicked, the `handleClick` function is called, and it logs a message to the console.
+
+## Handling onChange Event
+
+Here's an example of handling the onChange event in a functional component:
+
+```javascript
+import React, { useState } from "react";
+
+function Input() {
+  const [value, setValue] = useState("");
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+  console.log("value", value); // It will log every state change
+
+  return <input type="text" value={value} onChange={handleChange} />;
+}
+```
+
+In the above example, we have a functional component called Input that renders an input element. We manage the input's value using the `value` state variable and the `setValue` function from the useState Hook. We attach the `handleChange` function to the onChange event of the input. Whenever the input's value changes, the `handleChange` function is called, and it updates the state with the new value.
+
+## Commonly Used Events
+
+React supports a wide range of events that you can handle in functional components, including onClick, onChange, onSubmit, onFocus, onBlur, and more. You can attach event handlers to different elements and components based on your application's needs.
