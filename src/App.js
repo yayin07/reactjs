@@ -1,10 +1,10 @@
-import React from "react";
-import Counter from "./Counter";
+import React from 'react';
+import Greeting from './Greeting';
 
 function App() {
   return (
     <div>
-      <Counter />
+      <Greeting name="John" />
     </div>
   );
 }
